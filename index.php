@@ -1,4 +1,11 @@
-<?php 
-
- echo "hola mundo Daniel Perez";
- ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<body>
+    <h1>TecnoGear</h1>
+</body>
+</html>
