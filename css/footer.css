@@ -1,0 +1,23 @@
+.text-body {
+  color: black;
+}
+
+#legal {
+  color: black;
+}
+
+footer {
+  background-color: rgb(114, 173, 229);
+  margin-top: 40px;
+}
+
+footer div section a svg {
+  color: black;
+  width: 28px;
+  height: 28px;
+  transition: all 0.4s ease;
+}
+
+footer div section a svg:hover {
+  color: #fab3ad;
+}
