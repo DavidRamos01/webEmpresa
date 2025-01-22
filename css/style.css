@@ -53,14 +53,12 @@ nav a {
 }
 .nav-link{
     font-weight: bolder ;
-    background: linear-gradient(to top, rgb(114, 173, 229), rgb(0, 0, 0));
-    -webkit-background-clip: text; 
-    color: transparent;
+    color: rgb(117, 157, 194);
 }
 
 .nav-link:hover{
     transform: scale(1.1);
-    background: linear-gradient(to bottom, rgb(114, 173, 229), rgb(0, 0, 0));
+    background: linear-gradient(to top, rgb(114, 173, 229), rgb(0, 0, 0));
     -webkit-background-clip: text; 
     color: transparent;
 }
