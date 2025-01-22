@@ -18,7 +18,7 @@
         <a class="nav-link active" aria-current="page" href="#"><img  class="logo" src="img/logo.png" alt=""></a>
         <a class="nav-link active" aria-current="page" href="#">Inicio</a>
         <a class="nav-link" href="#">Productos</a>
-        <a class="nav-link" href="#">Contactos</a>
+        <a class="nav-link" href="contacto.php">Contactos</a>
         <a class="nav-link" href="#"><img class="carrito" src="img/carrito.png" alt=""></a>
       </div>
     </div>
