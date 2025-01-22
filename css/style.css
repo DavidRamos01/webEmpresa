@@ -12,7 +12,7 @@ img{
 }
 .titulo{
     position: absolute;
-    top: 300px;
+    top: 350px;
     left: 400px;
     width: 60%;
     z-index: 1;
@@ -50,4 +50,17 @@ nav a {
 .logo{
     border-radius: 50%;
     width: 80px;
+}
+.nav-link{
+    font-weight: bolder ;
+    background: linear-gradient(to top, rgb(114, 173, 229), rgb(0, 0, 0));
+    -webkit-background-clip: text; 
+    color: transparent;
+}
+
+.nav-link:hover{
+    transform: scale(1.1);
+    background: linear-gradient(to bottom, rgb(114, 173, 229), rgb(0, 0, 0));
+    -webkit-background-clip: text; 
+    color: transparent;
 }
