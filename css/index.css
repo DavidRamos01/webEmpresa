@@ -30,3 +30,17 @@ h1{
     margin: 0;
     padding: 20px;
 }
+
+.subtituloServicios{
+    text-align: center;
+    font-family: sans-serif;
+}
+.columnasServicio{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.servicio{
+    border: 1px solid black;
+    display: flex;
+}
