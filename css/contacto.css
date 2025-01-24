@@ -7,8 +7,6 @@
 body {
   font-family: Arial, sans-serif;
   color: white;
-  padding: 20px;
-  background-color: black !important;
 }
 
 #contenedor {
@@ -48,6 +46,17 @@ label {
 }
 
 input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #fefefe;
+  color: black;
+}
+
+input[type="email"],
 textarea {
   width: 100%;
   padding: 10px;

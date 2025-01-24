@@ -14,14 +14,10 @@
 <div id="contenedor">
   <div class="container">
     <h1>Contactanos</h1>
-    <form method="POST" action="contacto2.php">
+    <form method="POST" action="enviar.php">
       <div class="form-group">
-        <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre">
-      </div>
-      <div class="form-group">
-        <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" name="telefono" placeholder="Teléfono">
+        <label for="remitente">Remitente</label>
+        <input type="email" id="remitente" name="remitente" placeholder="Ejemplo: ejemplo@gmail.com">
       </div>
       <div class="form-group">
         <label for="detalles">Cuentanos tu problema en detalle</label>
@@ -36,8 +32,8 @@
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d760.2158744479879!2d-3.8503067988421744!3d40.34537399519033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd418e948c400001%3A0x65ea604ecde95f6c!2sCDM%20Park%20West!5e0!3m2!1sen!2ses!4v1737376576646!5m2!1sen!2ses" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </div>
-  <footer class="text-center bg">
-  <div class="pt-4">
+  <footer class="text-center container-fluid">
+  <div>
     <section id="social" class="mb-4">
       <a
         data-mdb-ripple-init

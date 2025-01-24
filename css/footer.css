@@ -9,6 +9,7 @@
 footer {
   background-color: rgb(114, 173, 229);
   margin-top: 40px;
+  width: 100%;
 }
 
 footer div section a svg {
