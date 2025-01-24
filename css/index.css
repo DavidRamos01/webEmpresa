@@ -30,35 +30,3 @@ h1{
     margin: 0;
     padding: 20px;
 }
-.navbar-collapse{
-    display: flex;
-}
-.navbar-nav{
-    width: 100% !important;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.carrito{
-    width: 30px ; 
-}
-nav a {
-    text-align: center;
-    font-size: 1.5rem;
-    
-}
-.logo{
-    border-radius: 50%;
-    width: 80px;
-}
-.nav-link{
-    font-weight: bolder ;
-    color: rgb(117, 157, 194);
-}
-
-.nav-link:hover{
-    transform: scale(1.1);
-    background: linear-gradient(to top, rgb(114, 173, 229), rgb(0, 0, 0));
-    -webkit-background-clip: text; 
-    color: transparent;
-}
