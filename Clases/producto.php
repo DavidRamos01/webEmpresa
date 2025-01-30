@@ -19,10 +19,9 @@ class Producto {
     private function procesarFoto($foto) {
         if (is_array($foto)) {
             if (isset($foto['name']) && $foto['error'] === UPLOAD_ERR_OK) {
-                // Si la foto tiene nombre y no hay errores en la subida, procesarla
-                return basename($foto['name']); // Retorna solo el nombre del archivo
+                return basename($foto['name']); 
             } else {
-                // Manejo de errores
+          
                 switch ($foto['error']) {
                     case UPLOAD_ERR_INI_SIZE:
                     case UPLOAD_ERR_FORM_SIZE:
@@ -42,10 +41,9 @@ class Producto {
                 }
             }
         } elseif (is_string($foto) && !empty($foto)) {
-            // Si se recibe un nombre de archivo directamente
             return $foto;
         }
-        return ""; // Si no hay foto subida, retornar cadena vacía
+        return ""; 
     }
 }
 

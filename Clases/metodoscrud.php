@@ -84,25 +84,38 @@ class metodoscrud
             echo "Error al eliminar el producto: " . $stmt->error;
         }
     }
-    public function insertarContacto($remitente, $mensaje) {
+    public function login($nombre, $password)
+    {
+        $conn = $this->conexion->conectar();
+        $query = "SELECT id, nombre, contrasena FROM usuarios WHERE nombre = '$nombre'";
+        $resultado = $conn->query($query);
+
+        if ($resultado->num_rows == 1) {
+            $datosUsuario = $resultado->fetch_assoc();
+            if (password_verify($password, $datosUsuario['contrasena'])) {
+                return new Usuario($datosUsuario['nombre'], $datosUsuario['password']);
+            }
+        }
+        return null;
+    }
+public function insertarContacto($remitente, $mensaje) {
         $conexion = $this->conexion->conectar();
-    
+
         if (!$conexion) {
             die("Error de conexión a la base de datos");
         }
-    
+
         $remitente = $conexion->real_escape_string($remitente);
         $mensaje = $conexion->real_escape_string($mensaje);
-    
+
         $sql = "INSERT INTO contacto (remitente, mensaje) VALUES ('$remitente', '$mensaje')";
-    
+
         if ($conexion->query($sql) === TRUE) {
             echo "Nuevo registro insertado correctamente";
         } else {
             echo "Error: " . $sql . "<br>" . $conexion->error;
         }
     }
-
     public function mostrarContacto() {
         $connn = $this->conexion->conectar();
         $query = "SELECT * FROM contacto";
@@ -117,18 +130,17 @@ class metodoscrud
         return $contacto;
     }
 
-    public function login($nombre, $password)
-    {
+    public function eliminarContacto($contacto) {
         $conn = $this->conexion->conectar();
-        $query = "SELECT id, nombre, contrasena FROM usuarios WHERE nombre = '$nombre'";
-        $resultado = $conn->query($query);
 
-        if ($resultado->num_rows == 1) {
-            $datosUsuario = $resultado->fetch_assoc();
-            if (password_verify($password, $datosUsuario['contrasena'])) {
-                return new Usuario($datosUsuario['nombre'], $datosUsuario['password']);
-            }
+        $query = "DELETE FROM contacto WHERE id = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $contacto);
+
+        if ($stmt->execute()) {
+            echo "Producto eliminado correctamente.";
+        } else {
+            echo "Error al eliminar el producto: " . $stmt->error;
         }
-        return null;
     }
 }

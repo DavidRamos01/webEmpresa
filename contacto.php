@@ -4,11 +4,10 @@
     $remitente = $_POST['remitente'];
     $mensaje = $_POST['mensaje'];
 
-    // Crear una instancia de metodoscrud y guardar en la base de datos
-    $metodoscrud = new metodoscrud();
+  $metodoscrud = new metodoscrud();
     $metodoscrud->insertarContacto($remitente, $mensaje);
 
-    // Redirigir a la misma página para evitar reenvíos múltiples
+
     header('Location: contacto.php');
     exit();
 }
@@ -23,7 +22,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/footer.css">
   <style>
-    /* Estilos generales */
+
     body {
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
@@ -44,7 +43,7 @@
       margin-bottom: 40px;
     }
 
-    /* Estilos del contenedor */
+
     #contenedor {
       background-color: white;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -105,7 +104,7 @@
       background-color: rgb(45, 98, 154);
     }
 
-    /* Estilo del mapa */
+  
     .mapa {
       margin-top: 40px;
       display: flex;

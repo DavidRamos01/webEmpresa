@@ -20,5 +20,6 @@ footer div section a svg {
 }
 
 footer div section a svg:hover {
-  color: #fab3ad;
+  color: rgb(114, 173, 229)
+  ;
 }

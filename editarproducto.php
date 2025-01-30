@@ -1,6 +1,7 @@
 <?php
 require_once "clases/conexion.php";
 require_once "clases/metodoscrud.php";
+include "includes/navAdmin.php";
 
 class EditarProducto {
     private $metodoscrud;
@@ -35,8 +36,8 @@ if (!$producto) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Producto</title>
+    <link rel="stylesheet" href="css/footer.css">
     <style>
-        /* Estilos Generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -52,7 +53,6 @@ if (!$producto) {
             color: rgb(114, 173, 229);
         }
 
-        /* Estilo del formulario */
         .form-container {
             display: flex;
             justify-content: center;
@@ -174,5 +174,8 @@ if (!$producto) {
             <a href="productosadmin.php">Volver a la lista de productos</a>
         </div>
     </div>
+    <?php 
+    include "includes/footer.php"
+    ?>
 </body>
 </html>

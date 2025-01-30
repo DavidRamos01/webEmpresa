@@ -15,15 +15,25 @@
     <h1>TecnoGear</h1>
   </div>
   <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="img/slider1.png" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="img/slide2.jpg" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-        <img src="img/slider3.jpeg" class="d-block w-100" alt="...">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <?php
+        require_once('clases/conexion.php');
+        require_once('clases/slider.php');
+
+        $sliders = Slider::obtenerSliders();
+
+        foreach ($sliders as $index => $slider) {
+          $foto = $slider->getFoto();
+          $id = $slider->getId();
+          $active = $index === 0 ? 'active' : '';
+
+          echo '<div class="carousel-item ' . $active . '">
+                        <img src="img/' . $foto . '" class="d-block w-100" alt="Slider Image">
+                      </div>';
+        }
+        ?>
+
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
@@ -38,46 +48,58 @@
   <div class="container mt-5">
     <div class="row columnasServicio">
       <div class="col-12 subtituloServicios">
-        <h2>Servicio que Ofrecemos</h2>
+        <h2>Servicios que Ofrecemos</h2>
       </div>
     </div>
     <div class="row columnasServicio mt-5">
       <div class="col-3 servicio">
         <div class="img"><img class="imgServicio" src="img/ventas.jpg" alt=""></div>
-        <div class="texto mt-4"> <h5>Venta de Equipos Informaticos a medida</h5><span>Ofrecemos una amplia variedad de ordenadores, desde modelos básicos hasta equipos de alto rendimiento.
-Personaliza tu equipo con los componentes, software y periféricos que mejor se adapten a tus necesidades.
-¡Consigue el ordenador perfecto para ti!</span></div>
-       
+        <div class="texto mt-4">
+          <h5>Venta de Equipos Informaticos a medida</h5><span>Ofrecemos una amplia variedad de ordenadores, desde modelos básicos hasta equipos de alto rendimiento.
+            Personaliza tu equipo con los componentes, software y periféricos que mejor se adapten a tus necesidades.
+            ¡Consigue el ordenador perfecto para ti!</span>
+        </div>
+
       </div>
       <div class="col-3 servicio">
-      <div class="img"><img class="imgServicio" src="img/asesoramiento.jpg" alt=""></div>
-      <div class="texto mt-4"> <h5>Asesoramiento personalizado</h5><span>Nuestro equipo de expertos te ayudará a elegir los equipos y el software ideales para ti.
-Te asesoraremos sobre las características técnicas de los productos y te daremos recomendaciones personalizadas.
-¡Toma la mejor decisión con nuestra ayuda!</span></div>
+        <div class="img"><img class="imgServicio" src="img/asesoramiento.jpg" alt=""></div>
+        <div class="texto mt-4">
+          <h5>Asesoramiento personalizado</h5><span>Nuestro equipo de expertos te ayudará a elegir los equipos y el software ideales para ti.
+            Te asesoraremos sobre las características técnicas de los productos y te daremos recomendaciones personalizadas.
+            ¡Toma la mejor decisión con nuestra ayuda!</span>
+        </div>
       </div>
       <div class="col-3 servicio">
-      <div class="img"><img class="imgServicio" src="img/soporte.jpg" alt=""></div>
-      <div class="texto mt-4"> <h5>Soporte técnico</h5><span>Ofrecemos asistencia técnica en caso de problemas con tus equipos o software.
-Puedes contactarnos por teléfono, correo electrónico o chat en línea.
-¡Resolvemos tus dudas y problemas de forma rápida y eficiente!</span></div>
+        <div class="img"><img class="imgServicio" src="img/soporte.jpg" alt=""></div>
+        <div class="texto mt-4">
+          <h5>Soporte técnico</h5><span>Ofrecemos asistencia técnica en caso de problemas con tus equipos o software.
+            Puedes contactarnos por teléfono, correo electrónico o chat en línea.
+            ¡Resolvemos tus dudas y problemas de forma rápida y eficiente!</span>
+        </div>
       </div>
     </div>
     <div class="row columnasServicio mt-5">
       <div class="col-3 servicio">
-      <div class="img"><img class="imgServicio" src="img/mantenimiento.jpg" alt=""></div>
-      <div class="texto mt-4"> <h5>Mantenimiento y reparación</h5><span>Realizamos mantenimiento preventivo y reparación de equipos averiados.
-Contamos con técnicos cualificados que diagnosticarán y solucionarán cualquier problema.
-¡Mantén tu equipo en perfectas condiciones!</span></div>
+        <div class="img"><img class="imgServicio" src="img/mantenimiento.jpg" alt=""></div>
+        <div class="texto mt-4">
+          <h5>Mantenimiento y reparación</h5><span>Realizamos mantenimiento preventivo y reparación de equipos averiados.
+            Contamos con técnicos cualificados que diagnosticarán y solucionarán cualquier problema.
+            ¡Mantén tu equipo en perfectas condiciones!</span>
+        </div>
       </div>
       <div class="col-3 servicio">
-      <div class="img"><img class="imgServicio" src="img/configuracion.png" alt=""></div>
-      <div class="texto mt-4"> <h5>Configuración e instalación</h5><span>Recogemos tus equipos usados para su reciclaje o reutilización.
-Contribuimos a reducir el impacto ambiental de los residuos electrónicos.
-¡Deshazte de tus equipos antiguos de forma responsable!</span></div>
+        <div class="img"><img class="imgServicio" src="img/configuracion.png" alt=""></div>
+        <div class="texto mt-4">
+          <h5>Configuración e instalación</h5><span>Recogemos tus equipos usados para su reciclaje o reutilización.
+            Contribuimos a reducir el impacto ambiental de los residuos electrónicos.
+            ¡Deshazte de tus equipos antiguos de forma responsable!</span>
+        </div>
       </div>
       <div class="col-3 servicio">
-      <div class="img"><img class="imgServicio" src="img/alquiler.jpg" alt=""></div>
-      <div class="texto mt-4"> <h5>Alquiler de equipos</h5><span>Destrucción segura de datos de discos duros y otros dispositivos de almacenamiento.</span></div>
+        <div class="img"><img class="imgServicio" src="img/alquiler.jpg" alt=""></div>
+        <div class="texto mt-4">
+          <h5>Alquiler de equipos</h5><span>Destrucción segura de datos de discos duros y otros dispositivos de almacenamiento.</span>
+        </div>
       </div>
     </div>
   </div>

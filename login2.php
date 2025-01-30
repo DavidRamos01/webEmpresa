@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($usuario) {
         $_SESSION['usuario'] = serialize($usuario);
     
-        header("Location: indexAdmin.php");
+        header("Location: administrarslider.php");
         exit();
     } else {
         echo "Error: Usuario o contraseña incorrectos.";

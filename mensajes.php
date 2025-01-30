@@ -1,12 +1,9 @@
 <?php
-// Incluir las clases necesarias
 include_once 'clases/metodoscrud.php';
 
-// Crear una instancia de la clase CRUD
 $metodoscrud = new metodoscrud();
 
-// Obtener todos los productos
-$productos = $metodoscrud->mostrarProductos();
+$contacto = $metodoscrud->mostrarContacto();
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +11,10 @@ $productos = $metodoscrud->mostrarProductos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/footer.css">
-    <title>Ver Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Ver Mensajes</title>
     <style>
-        /* Estilos Generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -39,6 +36,7 @@ $productos = $metodoscrud->mostrarProductos();
             gap: 20px;
             padding: 20px;
             justify-items: center;
+            height:100px;
         }
 
         .card {
@@ -47,18 +45,12 @@ $productos = $metodoscrud->mostrarProductos();
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             width: 100%;
-            height: 500px;
+            height: 250px;
             transition: transform 0.3s ease-in-out;
         }
 
         .card:hover {
             transform: translateY(-10px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
         }
 
         .card-content {
@@ -73,10 +65,12 @@ $productos = $metodoscrud->mostrarProductos();
         }
 
         .card-description {
-            height: auto;
+            width: 100%;
             font-size: 1rem;
             color: #555;
             margin: 10px 0;
+            min-height: 110px;
+            overflow-wrap: break-word;
         }
 
         .card-price {
@@ -110,38 +104,26 @@ $productos = $metodoscrud->mostrarProductos();
     </style>
 </head>
 <body>
-    <?php 
-    include 'includes/navAdmin.php';
-    ?>
-    <h1 class="m-5">Gestion De Productos</h1>
+    <?php include 'includes/navexcel.php' ?>
+    <h1>Gestion De Mensaje</h1>
 
-    <?php if (empty($productos)): ?>
-        <p class="no-products">No hay productos disponibles en la base de datos.</p>
+    <?php if (empty($contacto)): ?>
+        <p class="no-products">No hay mensajes disponibles en la base de datos.</p>
     <?php else: ?>
         <div class="card-container">
-            <?php foreach ($productos as $producto): ?>
+            <?php foreach ($contacto as $contactos): ?>
                 <div class="card">
-                    <?php if (!empty($producto['foto'])): ?>
-                        <img src="Img/<?php echo $producto['foto']; ?>" alt="Imagen del producto">
-                    <?php else: ?>
-                        <img src="Img/default.jpg" alt="Imagen del producto">
-                    <?php endif; ?>
                     <div class="card-content">
-                        <h2 class="card-title"><?php echo $producto['nombre']; ?></h2>
-                        <p class="card-description">Descripcion: <?php echo $producto['descripcion']; ?></p>
-                        <p class="card-price">Precio: <?php echo number_format($producto['precio'], 2, ',', '.'); ?>€</p>
-                        <p class="card-price">Precio con descuento: <?php echo number_format($producto['preciodescuento'], 2, ',', '.'); ?>€</p>
-                        <p class="card-description">Unidades: <?php echo $producto['unidades']; ?></p>
+                        <h2 class="card-title"><?php echo $contactos['remitente']; ?></h2>
+                        <p class="card-description">Mensaje: <?php echo $contactos['mensaje']; ?></p>
                     </div>
                     <div class="card-footer">
-                        <a href="editarproducto.php?id=<?php echo $producto['id']; ?>">Editar</a>
-                        <a href="procesos/eliminarproducto.php?id=<?php echo $producto['id']; ?>">Eliminar</a>
+                        <a href="procesos/eliminarcontacto.php?id=<?php echo $contactos['id']; ?>">Eliminar</a>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-    <?php endif; 
-    include "includes/footer.php";?>
+    <?php endif; ?>
 
 </body>
 </html>

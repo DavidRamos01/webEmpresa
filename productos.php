@@ -1,12 +1,32 @@
 <?php
-// Incluir las clases necesarias
+session_start();
 include_once 'clases/metodoscrud.php';
 
-// Crear una instancia de la clase CRUD
 $metodoscrud = new metodoscrud();
-
-// Obtener todos los productos
 $productos = $metodoscrud->mostrarProductos();
+
+
+if (isset($_POST['agregar_al_carrito'])) {
+    $producto_id = $_POST['producto_id'];
+    $producto = $metodoscrud->obtenerProductoPorId($producto_id);
+    
+  
+    if (isset($_SESSION['carrito'][$producto_id])) {
+        $_SESSION['carrito'][$producto_id]['cantidad'] += 1;
+        $_SESSION['carrito'][$producto_id]['precio_total'] += $producto['preciodescuento'];
+    } else {
+ 
+        $_SESSION['carrito'][$producto_id] = [
+            'id' => $producto['id'],
+            'nombre' => $producto['nombre'],
+            'precio' => $producto['preciodescuento'],
+            'cantidad' => 1,
+            'precio_total' => $producto['preciodescuento']
+        ];
+    }
+    header('Location: productos.php');
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,10 +34,12 @@ $productos = $metodoscrud->mostrarProductos();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/footer.css">
     <title>Ver Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/nav.css">
     <style>
-        /* Estilos Generales */
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -110,10 +132,8 @@ $productos = $metodoscrud->mostrarProductos();
     </style>
 </head>
 <body>
-    <?php 
-    include 'includes/navAdmin.php';
-    ?>
-    <h1 class="m-5">Gestion De Productos</h1>
+<?php include 'includes/nav.php'; ?>
+    <h1> Productos</h1>
 
     <?php if (empty($productos)): ?>
         <p class="no-products">No hay productos disponibles en la base de datos.</p>
@@ -132,16 +152,18 @@ $productos = $metodoscrud->mostrarProductos();
                         <p class="card-price">Precio: <?php echo number_format($producto['precio'], 2, ',', '.'); ?>€</p>
                         <p class="card-price">Precio con descuento: <?php echo number_format($producto['preciodescuento'], 2, ',', '.'); ?>€</p>
                         <p class="card-description">Unidades: <?php echo $producto['unidades']; ?></p>
-                    </div>
-                    <div class="card-footer">
-                        <a href="editarproducto.php?id=<?php echo $producto['id']; ?>">Editar</a>
-                        <a href="procesos/eliminarproducto.php?id=<?php echo $producto['id']; ?>">Eliminar</a>
+                        <div class="card-footer">
+                            <form action="productos.php" method="POST">
+                                <input type="hidden" name="producto_id" value="<?php echo $producto['id']; ?>">
+                                <button type="submit" name="agregar_al_carrito" class="btn btn-primary">Añadir al carrito</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
         </div>
-    <?php endif; 
-    include "includes/footer.php";?>
-
+    <?php endif; ?>
+    <?php include 'includes/footer.php'; ?>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>

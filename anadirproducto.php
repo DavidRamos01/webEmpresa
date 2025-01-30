@@ -1,10 +1,10 @@
 <?php
-// Incluir las clases necesarias
-include_once 'clases/metodoscrud.php';
 
-// Comprobar si el formulario ha sido enviado
+include_once 'clases/metodoscrud.php';
+include_once 'includes/navAdmin.php';
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Capturar los datos del formulario
     $nombre = $_POST['nombre'];
     $descripcion = $_POST['descripcion'];
     $precio = $_POST['precio'];
@@ -12,49 +12,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $unidades = $_POST['unidades'];
 
     function subirImagen($archivo) {
-        // Directorio donde se almacenarán las imágenes
-        $directorioDestino = 'Img/';  // Cambia 'img/' por el nombre de tu carpeta de imágenes
+        $directorioDestino = 'Img/';  
     
-        // Obtener el nombre original del archivo
         $nombreArchivo = basename($archivo['name']);
     
-        // Ruta destino donde se guardará la imagen
         $rutaDestino = $directorioDestino . $nombreArchivo;
     
-        // Obtener el tipo de archivo (extensión)
         $tipoArchivo = strtolower(pathinfo($rutaDestino, PATHINFO_EXTENSION));
     
-        // Tipos de archivo permitidos
         $tiposPermitidos = ['jpg', 'jpeg', 'png', 'gif'];
     
-        // Comprobar si el tipo de archivo es permitido
         if (!in_array($tipoArchivo, $tiposPermitidos)) {
             die('Error: Solo se permiten imágenes JPG, JPEG, PNG y GIF.');
         }
     
-        // Comprobar el tamaño del archivo (por ejemplo, máximo 2MB)
-        if ($archivo['size'] > 2 * 1024 * 1024) {  // 2MB
+        if ($archivo['size'] > 2 * 1024 * 1024) { 
             die('Error: El archivo es demasiado grande. El tamaño máximo permitido es 2MB.');
         }
-    
-        // Intentar mover el archivo subido a la carpeta destino
         if (move_uploaded_file($archivo['tmp_name'], $rutaDestino)) {
-            return $nombreArchivo;  // Retorna solo el nombre del archivo, sin el directorio
+            return $nombreArchivo; 
         } else {
             die('Error: No se pudo subir el archivo.');
         }
     }
 
-    // Subir la imagen y obtener el nombre
-    $nombreImagen = subirImagen($_FILES['foto']);  // Asegúrate de que el archivo se sube correctamente
+    $nombreImagen = subirImagen($_FILES['foto']);  
 
-    // Crear una instancia de la clase metodoscrud
+
     $metodoscrud = new metodoscrud();
 
-    // Insertar el producto en la base de datos
     $metodoscrud->insertarProducto($nombre, $descripcion, $precio, $preciodescuento, $unidades, $nombreImagen);
 
-    // Redirigir a la página de productos
     header('Location: productosadmin.php');
     exit();
 }
@@ -67,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insertar Producto</title>
     <style>
-        /* Estilos Generales */
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -83,7 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: rgb(114, 173, 229);
         }
 
-        /* Estilo del formulario */
         .form-container {
             display: flex;
             justify-content: center;
@@ -197,6 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <a href="productosadmin.php">Regresar a la lista de productos</a>
         </div>
     </div>
-
 </body>
+<?php include_once 'includes/footer.php'; ?>
 </html>
