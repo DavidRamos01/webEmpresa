@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Envío del formulario</title>
+    <link rel="stylesheet" href="css/nav.css">
     <style>
         * {
             margin: 0;
@@ -73,9 +74,8 @@
 <body>
     <div class="container">
         <?php
-        $nombre = $_POST["nombre"];
-        $telefono = $_POST["telefono"];
-        $detalles = $_POST["detalles"];
+        $remitente = $_POST["remitente"];
+        $mensaje = $_POST["mensaje"];
 
         $destinatario = "cliente@segundodedaw.es";
 
@@ -88,10 +88,8 @@
                 </head>
                 <body>
                     <h2>Detalles del mensaje:</h2>
-                    <p><strong>Nombre:</strong> ' . utf8_decode($nombre) . '</p>
-                    <p><strong>Teléfono:</strong> ' . utf8_decode($telefono) . '</p>
-                    <p><strong>Problema seleccionado:</strong> ' . utf8_decode($tipoProblema) . '</p>
-                    <p><strong>Detalles del problema:</strong><br/>' . utf8_decode($detalles) . '</p>
+                    <p><strong>Nombre:</strong> ' . utf8_decode($remitente) . '</p>
+                    <p><strong>Detalles del problema:</strong><br/>' . utf8_decode($mensaje) . '</p>
                 </body>
             </html>';
 
@@ -103,7 +101,7 @@
 
         if (mail($destinatario, $asunto, $cuerpo, $headers)) {
             echo "<h1 class='success'>¡Petición enviada con éxito!</h1>";
-            echo "<p>Gracias por contactarnos, <strong>" . htmlspecialchars($nombre) . "</strong>. Nos pondremos en contacto contigo pronto.</p>";
+            echo "<p>Gracias por contactarnos, <strong>" . htmlspecialchars($remitente) . "</strong>. Nos pondremos en contacto contigo pronto.</p>";
         } else {
             echo "<h1 class='error'>Error al enviar el correo.</h1>";
             echo "<p>Hubo un problema al intentar enviar tu mensaje. Por favor, inténtalo de nuevo más tarde.</p>";

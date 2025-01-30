@@ -41,6 +41,12 @@ h1{
     gap: 20px;
 }
 .servicio{
-    border: 1px solid black;
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+.imgServicio{
+    width: 120px;
+    border-radius: 50%;
 }
